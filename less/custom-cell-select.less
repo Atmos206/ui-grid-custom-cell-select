@@ -1,0 +1,46 @@
+.ui-grid-cell-focus {
+    background-color: transparent;
+}
+
+.ui-grid-cell-contents {
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;   
+    -khtml-user-select: none;    
+    -moz-user-select: none;      
+    -ms-user-select: none;       
+    user-select: none;           
+}
+
+.ui-grid-cell-contents.ui-grid-cell-focus {
+    background-color: transparent;
+}
+
+.ui-grid-cell-contents.ui-grid-custom-selected,
+.ui-grid-cell-contents.ui-grid-custom-selected,
+.ui-grid-cell-contents.ui-grid-cell-focus.ui-grid-custom-selected {
+    background-color: rgba(0,119,204, 0.15);
+}
+
+.ui-grid-custom-selected-scrolling .ui-grid-cell-contents.ui-grid-custom-selected {
+    background-color: transparent;
+}
+
+.ui-grid-custom-selection-input {
+	position:	absolute;
+	bottom:		-10px;
+	left:		-10px;
+	width:		10px;
+	height:		10px;
+	display:	block;
+	font-size:	1;
+	z-index:	-1;
+	color:		transparent;
+	background:	transparent;
+	overflow:	hidden;
+	border:		none;
+	padding:	0;
+	resize:		none;
+	outline:	none;
+	-webkit-user-select: text;
+	user-select: text; /* Because for user-select:none, Safari won't allow input */
+}

@@ -1,0 +1,27 @@
+{
+  "name": "ui-grid-custom-cell-select",
+  "version": "0.1.2",
+  "description": "Custom Cell Selection Plugin for UI Grid",
+  "main": "js/draggable-rows.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atmos206/ui-grid-custom-cell-select.git"
+  },
+  "keywords": [
+    "angular",
+    "ui-grid",
+    "cell-selection",
+    "copy",
+    "paste",
+    "cell-select"
+  ],
+  "author": "Brenden Peterson <brendenjpeterson@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Atmos206/ui-grid-custom-cell-select/issues"
+  },
+  "homepage": "https://github.com/Atmos206/ui-grid-custom-cell-select#readme"
+}
