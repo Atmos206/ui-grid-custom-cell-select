@@ -250,7 +250,7 @@ angular.module('ui.grid')
                             var currentCell = cells[i];
                             var cellValue = grid.getCellDisplayValue(currentCell.row, currentCell.col);
 
-                            copyData += cellValue;
+                            copyData += cellValue? cellValue : '';
 
                             if ((i + 1) % numCols === 0 && i !== cells.length - 1) {
                                 copyData += '\n';
