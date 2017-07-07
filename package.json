@@ -19,6 +19,12 @@
     "cell-select"
   ],
   "author": "Brenden Peterson <brendenjpeterson@gmail.com>",
+  "contributors": [
+    {
+      "name": "Jairo Alejandro Honorio Diaz",
+      "email": "registrofx@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Atmos206/ui-grid-custom-cell-select/issues"

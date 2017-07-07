@@ -79,7 +79,7 @@ angular.module('ui.grid')
 
                     function documentKeyUp(evt) {
                         var cKey = 67;
-                        if (evt.keyCode == cKey && evt.ctrlKey && window.getSelection() + '' === '') {
+                        if (evt.keyCode === cKey && (evt.ctrlKey || evt.metaKey) && window.getSelection() + '' === '') {
                             _scope.ugCustomSelect.hiddenInput.val(' ').focus().select();
                             document.execCommand('copy');
                             evt.preventDefault();
