@@ -1,6 +1,6 @@
 {
   "name": "ui-grid-custom-cell-select",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Custom Cell Selection Plugin for UI Grid",
   "main": "js/draggable-rows.js",
   "scripts": {
