@@ -49,6 +49,8 @@ angular.module('ui.grid')
                         grid.api.core.on.columnVisibilityChanged(_scope, clearDragData);
                         grid.api.core.on.rowsVisibleChanged(_scope, clearDragData);
                         grid.api.core.on.sortChanged(_scope, clearDragData);
+
+                        _scope.ugCustomSelect.hiddenInput.on('paste', pasteCellData);
                     });
 
                     // Events
@@ -78,11 +80,18 @@ angular.module('ui.grid')
                     }
 
                     function documentKeyUp(evt) {
-                        var cKey = 67;
-                        if (evt.keyCode == cKey && evt.ctrlKey && window.getSelection() + '' === '') {
+                        var cKey = 67, vKey = 86;
+
+                        // When ctrl+C or cmd+C
+                        if (evt.keyCode === cKey && (evt.ctrlKey || evt.metaKey) && window.getSelection() + '' === '') {
                             _scope.ugCustomSelect.hiddenInput.val(' ').focus().select();
                             document.execCommand('copy');
                             evt.preventDefault();
+                        }
+
+                        // When ctrl+V or cmd+V
+                        if (evt.keyCode === vKey && (evt.ctrlKey || evt.metaKey) && window.getSelection() + '' === '') {
+                            _scope.ugCustomSelect.hiddenInput.val('').focus();
                         }
                     }
 
@@ -101,6 +110,51 @@ angular.module('ui.grid')
                         if (cbData && (window.getSelection() + '' === '' || window.getSelection() + '' === ' ') && _scope.ugCustomSelect.copyData !== '') {
                             cbData.setData(cbType, _scope.ugCustomSelect.copyData);
                             evt.preventDefault();
+                        }
+                    }
+
+                    function pasteCellData(evt) {
+                        var clipboardData = evt.originalEvent.clipboardData || window.clipboardData;
+
+                        if (!clipboardData) {
+                            console.log('Clipboard API not supported in browser');
+                            return;
+                        }
+
+                        var pastedData = clipboardData.getData('Text');
+
+                        if (Object.keys(_scope.ugCustomSelect.cellMap)[0]) {
+                            var row = Object.keys(_scope.ugCustomSelect.cellMap)[0];
+                            var col = _scope.ugCustomSelect.cellMap[
+                                Object.keys(_scope.ugCustomSelect.cellMap)[0]][0];
+
+                            var visibleRows = grid.getVisibleRows();
+                            var columns = grid.columns;
+                            for (var i = 0; i < visibleRows.length; i++) {
+                                var visibleRow = visibleRows[i];
+                                if (visibleRow.uid === row) {
+                                    for (var j = 0; j < columns.length; j++) {
+                                        var column = columns[j];
+                                        if (column.uid === col) {
+                                            var pastedRows = pastedData.split('\n');
+                                            for (var k = 0; k < pastedRows.length - 1; k++) {
+                                                var pastedRow = pastedRows[k];
+                                                if (i + k < visibleRows.length) {
+                                                    var pastedCells = pastedRow.split('\t');
+                                                    for (var l = 0; l < pastedCells.length; l++) {
+                                                        var pastedCell = pastedCells[l];
+                                                        if (j + l < columns.length) {
+                                                            visibleRows[i + k].entity[columns[j + l].field] = pastedCell;
+                                                            grid.api.core.refresh();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
                         }
                     }
 
@@ -250,7 +304,7 @@ angular.module('ui.grid')
                             var currentCell = cells[i];
                             var cellValue = grid.getCellDisplayValue(currentCell.row, currentCell.col);
 
-                            copyData += cellValue;
+                            copyData += cellValue? cellValue : '';
 
                             if ((i + 1) % numCols === 0 && i !== cells.length - 1) {
                                 copyData += '\n';

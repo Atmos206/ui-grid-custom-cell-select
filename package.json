@@ -1,6 +1,6 @@
 {
   "name": "ui-grid-custom-cell-select",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Custom Cell Selection Plugin for UI Grid",
   "main": "js/draggable-rows.js",
   "scripts": {
@@ -19,6 +19,12 @@
     "cell-select"
   ],
   "author": "Brenden Peterson <brendenjpeterson@gmail.com>",
+  "contributors": [
+    {
+      "name": "Jairo Alejandro Honorio Diaz",
+      "email": "registrofx@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Atmos206/ui-grid-custom-cell-select/issues"

@@ -1,6 +1,10 @@
 Custom Cell Selection Plugin for UI Grid
 =================================
 
+## Features
+* Copy cell contents with CTRL+C or CMD+C
+* Paste cell contents with CTRL+V or CMD+V
+
 ## Install
 Install using npm
 
@@ -50,6 +54,8 @@ If my plugin helped you, feel free to [paypal me whatever you think it was worth
 
 ## Author
 Plugin **ui-grid-custom-cell-select** was originally developed by [Brenden Peterson](https://github.com/atmos206).
+
+Paste functionality and macOS compatibility by [Jairo Honorio](https://github.com/jahd2602).
 
 ## License
 The MIT License &copy; 2016 - 2017
