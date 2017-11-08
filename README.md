@@ -28,8 +28,14 @@ angular.module("app", ["ui.grid", "ui.grid.custom-cell-select"]);
 To add custom cell selection functionality you have to insert `ui-grid-custom-cell-select` directive to your table.
 
 ```html
-<div ui-grid="gridOptions" class="grid" ui-grid-custom-cell-select></div>
+<div ui-grid="gridOptions" class="grid" ui-grid-custom-cell-select="selectOptions"></div>
 ```
+
+## Settings
+
+An object may be provided to the `ui-grid-custom-cell-select` attribute. 
+
+- `ignoreRightClick` - (Default: false) Will not begin dragging when right mouse is used. Useful for context menus.
 
 ## Additional styling
 When you select grid cells ann additional css class (`ui-grid-draggable-row-over`) is applied to them. This plugin has default styling for these elements. If you are using __less__ you could import styles into your application.
