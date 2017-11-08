@@ -1,8 +1,29 @@
 ﻿// Custom multi-cell selection directive for UI-Grid
 // Created by brendenjpeterson@gmail.com
 
+/**
+ * @typedef {Object} SelectionOptions
+ * @property {Boolean} ignoreRightClick=false Set to true to ignore right click events
+ */
+
 angular.module('ui.grid')
 .directive('uiGridCustomCellSelect', ['$timeout', '$document', '$filter', 'rowSearcher', 'uiGridConstants', function ($timeout, $document, $filter, rowSearcher, uiGridConstants) {
+
+    // Adapted From https://www.quirksmode.org/js/events_properties.html
+    // Quick test to check mouse events for right click
+    function isRightMouse(evt) {
+        if (evt.which) { return (evt.which === 3); }
+        else if (evt.button) { return (evt.button === 2); }
+        return false;
+    }
+
+    /**
+     * @type {SelectionOptions}
+     */
+    var defaultOptions = {
+        ignoreRightClick: false
+    };
+
     return {
         replace: true,
         require: '^uiGrid',
@@ -15,6 +36,10 @@ angular.module('ui.grid')
                     var _scope = $scope;
                     var grid = uiGridCtrl.grid;
 
+                  /**
+                   * @type {SelectionOptions}
+                   */
+                  var selectionOptions = angular.extend({}, defaultOptions, $scope.$eval( $attrs.uiGridCustomCellSelect ));
 
                     // Data setup
                     _scope.ugCustomSelect = {
@@ -55,6 +80,10 @@ angular.module('ui.grid')
 
                     // Events
                     function dragStart(evt) {
+
+                        // Ignore right mouse if specified in options
+                        if( selectionOptions.ignoreRightClick && isRightMouse(evt) ){ return; }
+
                         if (angular.element(evt.target).hasClass('ui-grid-cell-contents')) {
                             var cellData = $(this).data().$scope;
                             clearDragData();

@@ -2,7 +2,7 @@
   "name": "ui-grid-custom-cell-select",
   "version": "0.2.0",
   "description": "Custom Cell Selection Plugin for UI Grid",
-  "main": "js/draggable-rows.js",
+  "main": "js/custom-cell-select.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,10 @@
     {
       "name": "Jairo Alejandro Honorio Diaz",
       "email": "registrofx@gmail.com"
+    },
+    {
+      "name": "Michael Grill",
+      "email": "mike@gogrillion.com"
     }
   ],
   "license": "MIT",
